@@ -9,15 +9,16 @@ class App extends Component {
     this.state={
       showMe: false
     },
-    this.state={
-      showMe1: false
-    },
-    this.state={
-      showMe2: false
-    },
-    this.state={
-      showMe3: false
-    },
+   
+    // this.state={
+    //   showMe1: false
+    // },
+    // this.state={
+    //   showMe2: false
+    // },
+    // this.state={
+    //   showMe3: false
+    // },
     this.state = {
       
       Process: [
@@ -25,15 +26,7 @@ class App extends Component {
         {id: 2, value: "Kill", isChecked: false},
         {id: 3, value: "Setgid", isChecked: false},
         {id: 4, value: "Setuid", isChecked: false}
-      ],
-      Network: [
-        {id: 1, value: "net_bind_service", isChecked: false},
-        {id: 2, value: "net_broadcast", isChecked: false},
-        {id: 3, value: "net_admin", isChecked: false},
-        {id: 4, value: "net_raw", isChecked: false},
-        {id: 4, value: "ipc_lock", isChecked: false},
-        {id: 4, value: "ipc_owner", isChecked: false},
-      ],
+      ]
     }
   }
 
@@ -43,36 +36,52 @@ class App extends Component {
       showMe:!this.state.showMe
     })
   }
-  operation1(){
-    this.setState({
-      showMe:!this.state.showMe1
-    })
-  }
-  operation2(){
-    this.setState({
-      showMe:!this.state.showMe2
-    })
-  }
-  operation3(){
-    this.setState({
-      showMe:!this.state.showMe3
-    })
-  }
+
+ 
+  // operation1(){
+  //   this.setState({
+  //     showMe:!this.state.showMe1
+  //   })
+  // }
+  // operation2(){
+  //   this.setState({
+  //     showMe:!this.state.showMe2
+  //   })
+  // }
+  // operation3(){
+  //   this.setState({
+  //     showMe:!this.state.showMe3
+  //   })
+  // }
   //Process array
+  // handleAllChecked = (event) => {
+  //   let Process = this.state.Process
+  //   Process.forEach(Network => Network.isChecked = event.target.checked) 
+  //   this.setState({Process: Process})
+  // }
   handleAllChecked = (event) => {
-    let Network = this.state.Network
-    Network.forEach(Network => Network.isChecked = event.target.checked) 
-    this.setState({Network: Network})
+    let Process = this.state.Process
+    Process.forEach(Network => Network.isChecked = event.target.checked) 
+    this.setState({Process: Process})
   }
 
+
   handleCheckChieldElement = (event) => {
-    let Network = this.state.Network
-    Network.forEach(Network => {
-       if (Network.value === event.target.value)
-       Network.isChecked =  event.target.checked
+    let Process = this.state.Process
+    Process.forEach(Process => {
+       if (Process.value === event.target.value)
+       Process.isChecked =  event.target.checked
     })
-    this.setState({Network: Network})
+    this.setState({Process: Process})
   }
+  // for unchacked
+
+
+
+
+
+
+
   // network
   handleAllChecked = (event) => {
     let Process = this.state.Process
@@ -84,12 +93,16 @@ class App extends Component {
     let Process = this.state.Process
     Process.forEach(Network => {
        if (Network.value === event.target.value)
-       Network.isChecked =  event.target.checked
+        Network.isChecked =  event.target.checked
+        
     })
     this.setState({Process: Process})
   }
 
   render() {
+
+   
+
     return (
       <div className="App" style={{padding:'10px'}}>
       <div className="content" style={{border:'1px solid #DBDDEC', marginLeft:'220px', marginRight:'210px', borderRadius:'11px', padding:'5px', marginBottom:'10px'}}>
@@ -99,19 +112,21 @@ class App extends Component {
       </div>
       {this.state.showMe ?
       <div className="select_option" style={{background:'#F9F9F9', marginRight:'380px', width:'100%', marginBottom:'-16px'}}>
+      
+      <div className="selectHide">  
       <b><input type="checkbox" onChange={this.handleAllChecked}  value="checkedall" /> Select All </b>
-   
-<b>
-<ul style={{display:'flex', padding:'0px', justifyContent:'space-between', color:'#000'}}>
-    {
+      <b>
+      <ul style={{display:'flex', padding:'0px', justifyContent:'space-between', color:'#000'}}>
+      {
       this.state.Process.map((Process, index) => {
         return (<CheckBox key={index} handleCheckChieldElement={this.handleCheckChieldElement}  {...Process} />)
       })
-    }
+      }
     </ul>
-</b>
-    </div>: null}
-        
+    </b>
+    </div>
+      
+    </div>: null}  
     </div>
       {/* network section */}
       <div className="content" style={{border:'1px solid #DBDDEC', marginLeft:'220px', marginRight:'210px', borderRadius:'11px', padding:'5px', marginBottom:'10px'}}>
